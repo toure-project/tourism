@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>  admin Login Form </title>
+  <meta name="viewport" content="width= device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="adminlogin.css">
+</head>
+
+<body>
+
+  <form from="myForm" action ="" method="POST" class="container">
+
+    <div class="login-box">
+
+      <h1> Login </h1>
+
+      <div class="textbox">
+        <input type="text" placeholder="Username" id="fname" name="fname" value="" required>  
+      </div>
+
+      <div class="textbox">
+        <input type="password" placeholder="Password" id="password" name="password" value="" maxlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="password must cantain at least one number and one uppper case and one lowercase letter and 8 characters" required>
+      </div>
+
+      
+      <input class="btn" type="submit" name="" value="Login"> <br> <br>
+
+     
+
+    </div>
+    
+  </form>
+
+</body>
+</html>
