@@ -1,0 +1,24 @@
+{% include 'crdapp/navebar.html' %}
+
+<br/> <br/>
+
+
+{% block content %}
+
+<h1>hotel form</h1>
+
+<form action="" method= POST>
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button type="submit"  class="btn btn_success"><i class="fas fa-databes"></i>submit</button>
+    
+    <a href="{% url 'hotel_list' %}">
+        <button type="button">back to list</button>
+      </a>  
+</form>
+
+{% endblock %}
+
+
+<br/> <br/>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="{% static 'css/hotelregisration.css' %}">
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>hotel Registration</title> 
+</head>
+<body>
+    <div class="container">
+        <header> Hotel's Registration</header>
+
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">hotels Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Hotel Name</label>
+                            <input type="text" placeholder="Enter your name" required name="hname">
+                        </div>
+                      
+                
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="text" placeholder="Enter your email" required name="email" title="Invalid Email">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Mobile Number</label>
+                            <input type="number" placeholder="Enter mobile number" name="phone">
+                        </div>
+
+                       
+
+                        <div class="input-field">
+                            <label>Address</label>
+                            <input type="text" placeholder="Enter your Address" name="address" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details ID">
+                    <span class="title">Room Requirement</span>
+
+                    <div class="fields">
+                        
+
+                        <div class="input-field">
+                            <label>Superior Room</label>
+                            <input type="number" placeholder="Number Of Superior Room" name="sroom" required>
+                        </div> 
+
+                        <div class="input-field">
+                            <label>Deluxe Room</label>
+                            <input type="number" placeholder="Number Of Deluxe Room" name="droom" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>single Occupation</label>
+                            <input type="number" placeholder="Number Of single Occupation" name="soccopation" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Double Occupation</label>
+                            <input type="number" placeholder="Number Of Double Occupation" name="doccopatin" required>
+                        </div>
+                      
+                        <form method="POST" enctype="multipart/form-data">
+                            <label>Enter Hotel Photo</label>
+                            <input type="file" name="photo">
+                
+                        </form>
+                    </div>
+                    <button class="sumbit">
+                        <span class="btnText">Submit</span>
+                        <i class="uil uil-navigator"></i>
+                    </button>
+                </div> 
+            </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
