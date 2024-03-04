@@ -47,15 +47,43 @@ def delete_hotel(request, hotel_id):
     return redirect('hotel_list')
 
 
+# def update_hotel(request, hotel_id):
+#     hotel_instance = get_object_or_404(hotels, pk=hotel_id)
+#     if request.method == "POST":
+#         form = hotelform(request.POST, request.FILES, instance=hotel_instance)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('hotel_list')
+#     else:
+#         form = hotelform(instance=hotel_instance)
+#         return redirect('hotel_list')
+
+#     return render(request, 'tourapp/hotelregistration.html', {'form': form})
+
+
+
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import hotels
+
 def update_hotel(request, hotel_id):
+    # Fetch the existing hotel instance or return 404 if not found
     hotel_instance = get_object_or_404(hotels, pk=hotel_id)
-    if request.method == "POST":
-        form = hotelform(request.POST, request.FILES, instance=hotel_instance)
-        if form.is_valid():
-            form.save()
-            return redirect('hotel_list')
-    else:
-        form = hotelform(instance=hotel_instance)
+
+    if request.method == 'POST':
+        # Update the fields of the hotel instance with the submitted data
+        hotel_instance.H_Name = request.POST.get('hname')
+        hotel_instance.Email = request.POST.get('email')
+        hotel_instance.Phon_Number = request.POST.get('phone')
+        hotel_instance.H_Locaation = request.POST.get('address')
+        hotel_instance.Superior_Room = request.POST.get('sroom')
+        hotel_instance.Deluxe_Room = request.POST.get('droom')
+        hotel_instance.single_Occupation = request.POST.get('soccopation')
+        hotel_instance.Double_Occupation = request.POST.get('doccopatin')
+        if 'photo' in request.FILES:
+            hotel_instance.Photo = request.FILES['photo']
+        hotel_instance.save()
+        
         return redirect('hotel_list')
 
-    return render(request, 'tourapp/hotelregistration.html', {'form': form})
+    return render(request, 'tourapp/hotelregistration.html', {'hotel_instance': hotel_instance})
+

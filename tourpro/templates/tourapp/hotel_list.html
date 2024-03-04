@@ -1,56 +1,58 @@
-{% include 'crdapp/navebar.html' %}
-
-<br/> <br/>
+<!-- hotel_list.html -->
 
 
 {% block content %}
 
 <h1>hotel list</h1>
-<table class="table table-borderless">
+<table class="table table-borderless" style="width:100%; border-collapse: collapse; margin-bottom: 20px;">
     <thead class="border-bottom font-weight-bold">
         <tr>
             <td>H Name</td>
-            <td>H address</address></td>
-            <td>level</address></td>
-            <td>description</td>
-            <td>paymrnt</td>
-            <td>
-                <a href="{% url 'hotel_form'  %}">
-                    <button type="button">add</button>
-                  </a>                
-                </td>
-            </td>
+            <td>Email</td>
+            <td>Phon_Number</td>
+            <td>H_Locaation</td>
+            <td>Superior_Room</td>
+            <td>Deluxe_Room</td>
+            <td>single_Occupation</td>
+            <td>Double_Occupation</td>
+            <td>photo</td>
+            <td>actions</td>
         </tr>
     </thead>
     <tbody>
         {% for hotels in hotel_list %}
         <tr>
-
             <td>{{hotels.H_Name}}</td>
-            <td>{{hotels.H_Locaation}}</address></td>
-            <td>{{hotels.level}}</td>
-            <td>{{hotels.Discreption}}</td>
-            <td>{{hotels.Payment}}</td>
+            <td>{{hotels.Email}}</td>
+            <td>{{hotels.Phon_Number}}</td>
+            <td>{{hotels.H_Locaation}}</td>
+            <td>{{hotels.Superior_Room}}</td>
+            <td>{{hotels.Deluxe_Room}}</td>
+            <td>{{hotels.single_Occupation}}</td>
+            <td>{{hotels.Double_Occupation}}</td>
+            {% if hotels.photo %}
+    <td> 
+        <img src="{{ hotels.photo.url }}" width="100" alt="Hotel Photo">
+    </td>
+{% endif %}
+
             <td>
-                <a href="{% url 'hotel_update' hotels.id %}">
+                <a href="{% url 'update_hotel' hotels.id %}">
                     <button type="button">update</button>
-                  </a>                
-                </td>
+                </a>
             </td>
             <td>
-                <form action="{% url 'hotel_delete' hotels.id %}" method="POST" class="d-inline">
+                <form action="{% url 'delete_hotel' hotels.id %}" method="POST" class="d-inline">
                     {% csrf_token %}
                     <button type="submit">delete</button>
-                  </a>                
-                </td>
+                </form>
             </td>
         </tr> 
         {% endfor %}
     </tbody>
 </table>
-
+<a href="{% url 'register_hotel'  %}">
+    <button type="button">add</button>
+  </a>     
 
 {% endblock %}
-
-
-

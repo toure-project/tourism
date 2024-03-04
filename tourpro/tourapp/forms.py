@@ -4,10 +4,7 @@ from django.forms import ModelForm
 from .models import hotels
 
 
-
-class hotelform(ModelForm):
+class hotelform(forms.ModelForm):
     class Meta:
-        model =hotels
-        fields = ('H_Name', 'H_Locaation', 'level','Discreption', 'Payment')
-
-    
+        model = hotels
+        fields = '__all__'

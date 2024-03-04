@@ -1,15 +1,10 @@
 from django.urls import path
 from . import views
-from django.contrib.auth import views as auth_view
-
 
 urlpatterns = [
-    path('', views.home, name="home"),
-    path('login', views.login, name="login"),
-
-   path ('hotel_form', views.hotel_form, name="hotel_form"),
-   path ('<int:id>/', views.hotel_form, name="hotel_update"),
-   path ('delete/<int:id>/', views.hotel_delete, name="hotel_delete"),
-   path ('hotel_list', views.hotel_list, name="hotel_list"),
-
+    path ('', views.home, name='home'),
+    path('register_hotel/',views.register_hotel, name='register_hotel'),
+    path ('hotel_list', views.hotel_list, name="hotel_list"),
+    path('delete/<int:hotel_id>/',views.delete_hotel, name='delete_hotel'),
+    path('update/<int:hotel_id>/', views.update_hotel, name='update_hotel'),
 ]
