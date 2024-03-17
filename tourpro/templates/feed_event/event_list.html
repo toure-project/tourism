@@ -1,0 +1,36 @@
+<!-- event_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event List</title>
+</head>
+<body>
+    <h1>Event List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Payment</th>
+                <th>Expiration Date</th>
+                <!-- Add more headers for additional fields if needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.name }}</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.location }}</td>
+                <td>{{ event.payment }}</td>
+                <td>{{ event.expiration_date }}</td>
+                <!-- Add more cells for additional fields if needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

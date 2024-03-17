@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>feedback</title>
+    <link rel="stylesheet" type="text/css" href="feedbackcss.css">
+    
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'add_event' %}">
+            <button type="button">add event</button>
+          </a>  
+          <a href="{% url 'event_list' %}">
+            <button type="button">events</button>
+          </a>  
+        <h1>Feedback Form</h1>
+        
+        <!-- Display success message as Bootstrap alert -->
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+    <div class="container">
+        <form id="contactus" action="" method="post">
+            {% csrf_token %}
+            <h3>FeedBack Form</h3>
+            <fieldset> <input placeholder="name" id="name" name="name" type="text" tabindex="1" required autofocus  > </fieldset>
+            <fieldset> <input placeholder="Email Address" id="email" name="email" type="email" tabindex="2" required> </fieldset>
+            <fieldset> <input placeholder="Phone Number" id="phone_number" name="phone_number" type="tel" tabindex="3" required> </fieldset>
+            <fieldset> <textarea placeholder="Type your message here..." id="feedback_message" name="feedback_message" tabindex="5" required></textarea> </fieldset>
+            <fieldset> <button name="submit" type="submit" id="contactus-submit" data-submit="...Sending"><i id="icon" class=""></i> Send Now</button> </fieldset>
+        </form>
+    </div>
+</body>
+</html>
