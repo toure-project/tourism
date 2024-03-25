@@ -7,34 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="AddEvent.css">
+    <link rel="stylesheet" href="hotelregisration.css">
      
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-    <title>Event </title> 
+    <title>Add Package</title> 
 </head>
 <body>
     <div class="container">
-        <header> Create upcomming Events</header>
+        <header> Add Package</header>
 
         <form action="#">
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Event Details</span><br>
+                    <span class="title">Package Details</span>
 
                     <div class="fields">
                         <div class="input-field">
-                            <label>Event Name</label>
+                            <label>Package Name</label>
                             <input type="text" placeholder="Enter your name" required>
                         </div>
-                        
-                        <div class="input-field">
-                            <label>Address</label>
-                            <input type="text" placeholder="Enter your Address" required>
+                        <div class="input-field"><br>
+                            <select required>
+                                <label>Group/Personal</label>
+                                <option value="Group">Group</option>
+                                <option value="Personal"> Personal</option>
+                                
+                            </select> 
+                            
                         </div>
                         <div class="input-field">
+                            <label>Package Type</label>
+                            <select required>
+                                <option value="">Select a package type</option>
+                                <option value="Standard">Standard</option>
+                                <option value="Premium"> Premium</option>
+                                <option value="Deluxe">Deluxe</option>
+                            </select>
+                        </div>
+                
+                        <div class="input-field">
                             <label>Price</label>
+    
                             <input type="text" placeholder="Enter Price" required oninput="validateAddressInput(this)">
 <span id="error-message" style="color: red;"></span>
 
@@ -53,14 +68,8 @@ function validateAddressInput(input) {
 </script>
                         </div>
                         <div class="input-field">
-                            <label>Event Date</label>
-                            <input type="text" placeholder="Enter expiration date" required>
-                        </div>
-                        
-                        <div class="input-field">
-                            <label>Event Description</label>
-                           
-                            <textarea placeholder="Type your message here..."  style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" placeholder="Any Description about Package" requiredtabindex="5" required></textarea>
+                            <label style="display: block; margin-bottom: 5px;">Description</label>
+                            <textarea style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" placeholder="Any Description about Package" required></textarea>
                         </div>
                         <div class="input-field">
                             <form method="POST" enctype="multipart/form-data">
@@ -68,19 +77,23 @@ function validateAddressInput(input) {
                                 <input type="file" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
                             </form>
                         </div>
-
                     </div>
                 </div>
 
                 <div class="details ID">
                   
+
+                    <div class="fields">
+                        
+                        
+      
+                    </div>
                     <button class="sumbit">
                         <span class="btnText">Submit</span>
                         <i class="uil uil-navigator"></i>
                     </button>
                 </div> 
             </div>
-
 
     <script src="script.js"></script>
 </body>
