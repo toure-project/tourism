@@ -23,6 +23,8 @@ def register_hotel(request):
         Deluxe_Room = request.POST.get('droom')
         single_Occupation = request.POST.get('soccopation')
         Double_Occupation = request.POST.get('doccopatin')
+
+
         Photo = request.FILES['photo']
         
         new_hotel = hotels(
@@ -41,10 +43,32 @@ def register_hotel(request):
     return render(request, 'tourapp/hotelregistration.html')
 
 
+
 def delete_hotel(request, hotel_id):
     hotel_to_delete = get_object_or_404(hotels, id=hotel_id)
     hotel_to_delete.delete()
     return redirect('hotel_list')
+def update_hotel(request, hotel_id):
+    # Fetch the existing hotel instance or return 404 if not found
+    hotel_instance = get_object_or_404(hotels, pk=hotel_id)
+
+    if request.method == 'POST':
+        # Update the fields of the hotel instance with the submitted data
+        hotel_instance.H_Name = request.POST.get('hname')
+        hotel_instance.Email = request.POST.get('email')
+        hotel_instance.Phon_Number = request.POST.get('phone')
+        hotel_instance.H_Locaation = request.POST.get('address')
+        hotel_instance.Superior_Room = request.POST.get('sroom')
+        hotel_instance.Deluxe_Room = request.POST.get('droom')
+        hotel_instance.single_Occupation = request.POST.get('soccopation')
+        hotel_instance.Double_Occupation = request.POST.get('doccopatin')
+        if 'photo' in request.FILES:
+            hotel_instance.Photo = request.FILES['photo']
+        hotel_instance.save()
+        
+        return redirect('hotel_list')
+
+    return render(request, 'tourapp/hotelregistration.html', {'hotel_instance': hotel_instance})
 
 
 # def update_hotel(request, hotel_id):

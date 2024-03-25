@@ -1,0 +1,87 @@
+<!-- mapapp/templates/mapapp/map.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Map</title>
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Include Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        #map { height: 400px; }
+    </style>
+</head>
+<body>
+    <h1>Leaflet Map</h1>
+    <div id="map"></div>
+    <button id="lockLocation">Lock My Position</button>
+
+    <script>
+        var map = L.map('map').setView([51.505, -0.09], 13);  // Initial map center and zoom level
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Variable to hold user's location
+        var userLocationMarker = null;
+
+        // Function to handle locking user's position
+        function lockUserPosition() {
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+
+                    // Create marker for user's location
+                    if (!userLocationMarker) {
+                        userLocationMarker = L.marker([latitude, longitude]).addTo(map)
+                            .bindPopup("Your Location").openPopup();
+                    } else {
+                        userLocationMarker.setLatLng([latitude, longitude]).update();
+                    }
+
+                    // Center the map on user's location
+                    map.setView([latitude, longitude], 13);
+
+                    // Call backend to fetch nearby locations
+                    fetchNearbyLocations(latitude, longitude);
+                },
+                function(error) {
+                    console.error('Error getting user location:', error);
+                },
+                { maximumAge: Infinity }  // Attempt to use a cached position
+            );
+        }
+
+        // Function to fetch nearby locations from the backend
+        function fetchNearbyLocations(latitude, longitude) {
+            // Send latitude and longitude to backend
+            // Example: You can use AJAX or fetch API to send a request to your Django backend
+            // Example AJAX request:
+            /*
+            $.ajax({
+                url: '/api/nearby-locations/',
+                method: 'GET',
+                data: {
+                    latitude: latitude,
+                    longitude: longitude
+                },
+                success: function(data) {
+                    // Process nearby locations and add markers to the map
+                    // Example: Loop through data and add markers
+                }
+            });
+            */
+        }
+
+        // Add click event listener to lock location button
+        document.getElementById('lockLocation').addEventListener('click', lockUserPosition);
+    </script>
+</body>
+</html>
