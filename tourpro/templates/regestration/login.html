@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Login and Registration Form in HTML & CSS | CodingLab</title>
+  <link rel="stylesheet" href="{% static 'css/user/slidestyl.css' %}">
+  <link rel="stylesheet" href="{% static 'css/Admin/adminlogin.css' %}">
+
+  <!-- Fontawesome CDN Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <!-- Logo -->
+        <!-- <img src="images/" alt=""> -->
+        <!-- Logo -->
+      </div>
+    </div>
+    <div class="forms">
+      <div class="form-content">
+        <div class="login-form">
+          <div class="title">Login</div>
+
+          <form method="post">
+            {% csrf_token %}
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" required><br><br>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
+              </div>
+              <div class="text">
+                        <a href="{% url 'reset_password' %}">forgoten password</a>
+              </div>
+              <div class="button input-box">
+                <input type="submit" value="Submit">
+              </div>
+              <div class="text sign-up-text">Don't have an account?
+              <a href="{% url 'register_manager' %}">Sign up now</a>
+              </div>
+            </div>
+            <a href="{% url 'reset_password' %}">forgoten password</a>
+
+          </form>
+
+          {% if error_message %}
+          <p>{{ error_message }}</p>
+          {% endif %}
+
+          {% if user_role %}
+          <p>Your role is: {{ user_role }}</p>
+          {% if user_role == "Hotel Manager" %}
+          <a href="{% url 'hotel_dashboard' %}">Go to Hotel Dashboard</a>
+          {% elif user_role == "Transport Manager" %}
+          <a href="{% url 'transport_dashboard' %}">Go to Transport Dashboard</a>
+          {% endif %}
+          <!-- Add more role-specific content as needed -->
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

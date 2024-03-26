@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -14,19 +15,24 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          {% if error_message %}
+        <p>{{ error_message }}</p>
+        {% endif %}
+            <form method="post" class="sign-in-form">
+              {% csrf_token %}
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" name="username">
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" id="password" name="password">
             </div>
             <input type="submit" value="Login" class="btn solid" />
            
-          </form>
+            </form>
+          <!-- </form>
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
@@ -50,7 +56,7 @@
             
             <input type="submit" class="btn" value="Sign up" />
            
-          </form>
+          </form> -->
         </div>
       </div>
 
@@ -62,8 +68,9 @@
               Travel to every corner of gurage zone!
             </p>
             <button class="btn transparent" id="sign-up-btn">
-              Sign up
-            </button>
+              <a href="{% url 'user_register' %}">Sign up</a>
+          </button>
+          
           </div>
           <img src="{% static "image/NewUserLoginPhoto/log.svg" %}" class="image" alt="" />
         </div>
