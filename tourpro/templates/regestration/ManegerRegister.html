@@ -1,32 +1,58 @@
 <!DOCTYPE html>
+{% load static %} 
 <html>
   <head>
     <meta charset="utf-8" />
     <title>Responsive Registration Form</title>
     <meta name="viewport" content="width=device-width,
       initial-scale=1.0"/>
-    <link rel="stylesheet" href="New_Register.css" />
+    <link rel="stylesheet" href="{% static 'css/New/New_Register.css' %}" />
+    <style>
+       body{
+       background-image: url('/static/image/New_Manager.png');
+    /* Adjust background properties as needed */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%; /* Optionally, set the height to ensure the background covers the entire viewport */
+}
+    </style>
   </head>
-  <body>
+  <body >
     <div class="container">
       <h1 class="form-title">Registration</h1>
-      <form action="#">
+      <form action="#" method="POST">
+         {% csrf_token %}
        
         <div class="main-user-info">
            
           <div class="user-input-box">
             <label for="">first Name</label>
             <input type="text"
-                    id=""
-                    name=""
+                    id="fname"
+                    name="fname"
                     placeholder="Enter First Name" required/>
           </div>
           <div class="user-input-box">
             <label for="username">LastName</label>
             <input type="text"
-                    id=""
-                    name=""
+                    id="lname"
+                    name="lname"
                     placeholder="Enter LastName" required/>
+          </div>
+          <div class="user-input-box">
+            <label for="">Address</label>
+            <input type="text"
+                    id="address"
+                    name="address"
+                    placeholder="Enter Address"/>
+          </div>
+          <div class="user-input-box">
+            <label for="phone">Phone Number</label>
+            <input type="text"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter Phone Number" required oninput="validateAddressInput(this)"/>
           </div>
           <div class="user-input-box">
             <label for="email">Email</label>
@@ -35,13 +61,7 @@
                     name="email"
                     placeholder="Enter Email" required/>
           </div>
-          <div class="user-input-box">
-            <label for="phoneNumber">Phone Number</label>
-            <input type="text"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    placeholder="Enter Phone Number" required oninput="validateAddressInput(this)"/>
-          </div>
+          
           <span id="error-message" style="color: red;"></span>
 
           <script>
@@ -57,19 +77,13 @@
             }
           }
           </script>
-          <div class="user-input-box">
-            <label for="">Address</label>
-            <input type="text"
-                    id=""
-                    name=""
-                    placeholder="Enter Address"/>
-          </div>
+          
           
         </div>
         <div class="user-input-box">
                 
             
-            <select style="background: none; outline: none;
+            <select required name="role" id="role" style="background: none; outline: none;
 
             border: none;
             line-height: 1;
@@ -89,7 +103,7 @@
             </select>
           </div>
         <div class="form-submit-btn">
-          <input type="submit" value="Register">
+          <input type="submit" value="Sumbit">
         </div>
       </form>
     </div>

@@ -15,7 +15,7 @@ def hotel_dashboard(request):
     return render(request,  'hotel/hotel_dashboard.html' )
 
 def transport_dashboard(request):
-    return render(request,  'regestration/transport_dashboard.html' )
+    return render(request,  'transport/transport_dashboard.html' )
 
 def reset_password(request):
     return render(request,  'regestration/reset_password.html' )
@@ -25,7 +25,7 @@ def generate_username(first_name, last_name):
     return username
 
 def generate_password():
-    password_length = 10
+    password_length = 8
     password_characters = string.ascii_letters + string.digits + string.punctuation
     password = ''.join(random.choice(password_characters) for i in range(password_length))
     return password
@@ -52,7 +52,7 @@ def register_manager(request):
         send_mail(subject, message, 'your-email@example.com', [email])
 
         return redirect('login')
-    return render(request, 'regestration/register.html')
+    return render(request, 'regestration/ManegerRegister.html')
 
 # Remaining views remain the same
 
@@ -78,10 +78,10 @@ def login_view(request):
         else:
             # Handle invalid login
             return redirect('register_manager')
-    return render(request, 'regestration/login.html')
+    return render(request, 'regestration/ManagerLogin.html')
 
 
 def NewUserLogin(request):
-    return render(request,  'regestration/NewUserLogin.html' )
+    return render(request,  'user/rig.html' )
 
 
